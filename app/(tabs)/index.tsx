@@ -1,4 +1,5 @@
-import { Alert, Image, StyleSheet, Platform, View, Text, Button } from 'react-native';
+import { Alert, Image, StyleSheet, Platform, View, Text, Button, FlatList } from 'react-native';
+import { Icon } from '@rneui/themed';
 import { StatusBar } from 'expo-status-bar';
 
 import { HelloWave } from '@/components/HelloWave';
@@ -12,57 +13,32 @@ export default function HomeScreen() {
   }
 
   return (
-    <View style = {alertStyle.container}>
-      <Button onPress = {onPressButton} title="Press Me" color="green" />
-      <StatusBar style='auto' />
+    <View style = {listViewStyle.container}>
+      {/* <Button onPress = {onPressButton} title="Press Me" color="green" />
+      <StatusBar style='auto' /> */}
+      <FlatList
+        data={[
+          {key: 'Devin'},
+          {key: 'Dan'},
+          {key: 'Dominic'},
+          {key: 'Jackson'},
+          {key: 'James'},
+          {key: 'Joel'},
+          {key: 'John'},
+          {key: 'Jillian'},
+          {key: 'Jimmy'},
+          {key: 'Julie'},
+        ]}
+        renderItem={({item}) => (
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={listViewStyle.item}>{item.key}</Text>
+            <Icon name='eye-outline' type='ionicon' color='green' size={20} />
+          </View>
+        )}
+      />
     </View>
-    // <ParallaxScrollView
-    //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-    //   headerImage={
-    //     <Image
-    //       source={require('@/assets/images/partial-react-logo.png')}
-    //       style={styles.reactLogo}
-    //     />
-    //   }>
-    //   <ThemedView style={styles.titleContainer}>
-    //     <ThemedText type="title">Welcome!</ThemedText>
-    //     <HelloWave />
-    //   </ThemedView>
-    //   <ThemedView style={styles.stepContainer}>
-    //     <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-    //     <ThemedText>
-    //       Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-    //       Press{' '}
-    //       <ThemedText type="defaultSemiBold">
-    //         {Platform.select({
-    //           ios: 'cmd + d',
-    //           android: 'cmd + m',
-    //           web: 'F12'
-    //         })}
-    //       </ThemedText>{' '}
-    //       to open developer tools.
-    //     </ThemedText>
-    //   </ThemedView>
-    //   <ThemedView style={styles.stepContainer}>
-    //     <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-    //     <ThemedText>
-    //       Tap the Explore tab to learn more about what's included in this starter app.
-    //     </ThemedText>
-    //   </ThemedView>
-    //   <ThemedView style={styles.stepContainer}>
-    //     <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-    //     <ThemedText>
-    //       When you're ready, run{' '}
-    //       <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-    //       <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-    //       <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-    //       <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-    //     </ThemedText>
-    //   </ThemedView>
-    // </ParallaxScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
@@ -104,3 +80,15 @@ const alertStyle = StyleSheet.create({
     alignItems: 'center',
   }
 })
+
+const listViewStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 22,
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+});
